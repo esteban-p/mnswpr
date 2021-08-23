@@ -1,17 +1,18 @@
 
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //9x9
 
+    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
+    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
+    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
+    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
+    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
+    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
+    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
+    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
+    [{}, {}, {}, {}, {}, {}, {}, {}, {}]
 
-    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
-    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
-    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
-    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
-    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
-    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
-    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
-    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
-    [{}, {}, {}, {}, {}, {}, {}, {}, {}],
-
-
+    //11x11 to include borders and be able to use indexes to allocate the same cell directly without considering the "index 0" issue
 
     [{value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}],
     [{value: 'Out'},     {},              {},              {},              {},             {},             {},             {},             {},             {},      {value: 'Out'}],
@@ -25,6 +26,11 @@
     [{value: 'Out'},     {},              {},              {},              {},             {},             {},             {},             {},             {},      {value: 'Out'}],
     [{value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}]
 
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 
 
 
@@ -32,9 +38,9 @@
 //------------ Class Cell creation -------------
 
 class Cell {
-    constructor() {
+    constructor(row, col) {
         this.row = 0;
-        this.column = 0;
+        this.col = 0;
         this.value = '';
         this.imageToShow = '';
     }
@@ -59,7 +65,68 @@ function createBoard(rows, cols) {
     }
     return board;
 }
-console.log(createBoard(9, 9));
+//console.log(createBoard(9, 9));
+
+let board = createBoard(9,9);
+//console.log(board);
+
+
+
+
+//------------ Function to assign row & col values to cell objects -------------
+
+function assignRowColToCells(arr) {
+    for (i = 0; i < arr.length; i++) {
+        for (j = 0; j <arr[i].length; j++) {
+            arr[i][j].row = i;
+            arr[i][j].col = j;
+        }
+    }
+}
+assignRowColToCells(board);
+//console.log(board);
+
+
+
+
+
+
+//------------ Function to random allocation of mines -------------
+
+function assignRandomMines(rows, cols, mines) {
+    let minesToAssign = mines;
+    let minesAssigned = 0;
+    while (minesAssigned < mines) {
+        let randomRow = Math.floor(Math.random()*rows) + 1;
+        let randomCol = Math.floor(Math.random()*cols) + 1;
+        if (board[randomRow][randomCol].value !== 'mine') {
+            board[randomRow][randomCol].value = 'mine';
+            minesAssigned += 1;
+        } 
+    }
+}
+assignRandomMines(9,9,10);
+//console.log(board);
+
+
+//------------ Function to check assigned mines -------------
+
+function checkedAssignedMines(arr) {
+    let assignedMinesArr = [];
+    let countedMines = 0;
+    for (i = 0; i < arr.length; i++) {
+        for (j = 0; j < arr[i].length; j++) {
+            if (arr[i][j].value === 'mine') {
+                countedMines += 1;
+                assignedMinesArr.push('Mine #' + countedMines + ' Row: ' + arr[i][j].row + ' Col: ' + arr[i][j].col);
+            }
+        }
+    }
+    return assignedMinesArr;
+}
+//console.log(checkedAssignedMines(board));
+
+
 
 
 
@@ -121,26 +188,6 @@ function calculateCellValue(currentCellRow, currentCellCol) {
 
 
 //console.log(calculateCellValue(4,7));
-
-
-
-
-
-
-
-
-function assignRandomMines(rows, columns, mines) {
-    let minesToAssign = mines;
-    let minesAssigned = 0;
-    while (minesAssigned < mines) {
-        let randomRow = Math.floor(Math.random()*rows) + 1;
-        let randomCol = Math.floor(Math.random()*cols) + 1;
-        if (game[randomRow][randomCol].value !== 'mine') {
-            game[randomRow][randomCol].value = 'mine';
-            minesAssigned += 1;
-        } 
-    }
-}
 
 
 
