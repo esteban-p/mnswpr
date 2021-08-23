@@ -12,7 +12,7 @@
     [{}, {}, {}, {}, {}, {}, {}, {}, {}],
     [{}, {}, {}, {}, {}, {}, {}, {}, {}]
 
-    //11x11 to include borders and be able to use indexes to allocate the same cell directly without considering the "index 0" issue
+    //11x11 to include borders, and be able to use indexes to target the same cell directly without considering the "index 0" issue
 
     [{value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}],
     [{value: 'Out'},     {},              {},              {},              {},             {},             {},             {},             {},             {},      {value: 'Out'}],
@@ -68,8 +68,6 @@ let board = createBoard(9, 9);
 
 
 
-
-
 //------------ Function to assign row & col values to cell objects -------------
 
 function assignRowColToCells(arr) {
@@ -81,8 +79,7 @@ function assignRowColToCells(arr) {
     }
 }
 assignRowColToCells(board);
-console.log(board);
-
+//console.log(board);
 
 
 
@@ -102,8 +99,10 @@ function assignRandomMines(rows, cols, mines) {
         } 
     }
 }
-//assignRandomMines(9,9,10);
+assignRandomMines(9,9,10);
 //console.log(board);
+
+
 
 
 //------------ Function to check assigned mines -------------
@@ -127,7 +126,26 @@ function checkedAssignedMines(arr) {
 
 
 
+//------------ Function to assign "out" values to borders -------------
+
+function assignBorders(arr) {
+    for (i = 0; i < arr.length; i++) {
+        arr[i][0].value = 'out';
+        arr[i][arr[i].length-1].value = 'out';
+    }
+    for (i = 0; i < arr[0].length; i++) {
+        arr[0][i].value = 'out';
+    }
+    let lastRowIndex = arr.length; 
+    for (i = 0; i < arr[0].length; i++) {
+        arr[lastRowIndex-1][i].value = 'out';
+    }
+}
+//assignBorders(board);
+//console.log(board);
     
+
+
 
 
 //------------ Cell value calculation when not assigned randomly already as mine -------------
@@ -187,6 +205,11 @@ function calculateCellValue(currentCellRow, currentCellCol) {
 
 
 
+
+// //------------ Cell value assignment -------------
+// function assignCellValue(arr) {
+//     for 
+// }
 
 
 
