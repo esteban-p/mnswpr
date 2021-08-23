@@ -1,7 +1,6 @@
 
 
 
-let gameExample = [
     [{}, {}, {}, {}, {}, {}, {}, {}, {}],
     [{}, {}, {}, {}, {}, {}, {}, {}, {}],
     [{}, {}, {}, {}, {}, {}, {}, {}, {}],
@@ -11,9 +10,9 @@ let gameExample = [
     [{}, {}, {}, {}, {}, {}, {}, {}, {}],
     [{}, {}, {}, {}, {}, {}, {}, {}, {}],
     [{}, {}, {}, {}, {}, {}, {}, {}, {}],
-];
 
-let game = [
+
+
     [{value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}],
     [{value: 'Out'},     {},              {},              {},              {},             {},             {},             {},             {},             {},      {value: 'Out'}],
     [{value: 'Out'},     {},              {},              {},              {},             {},             {},             {},             {},             {},      {value: 'Out'}],
@@ -25,23 +24,46 @@ let game = [
     [{value: 'Out'},     {},              {},              {},              {},             {},             {},             {},             {},             {},      {value: 'Out'}],
     [{value: 'Out'},     {},              {},              {},              {},             {},             {},             {},             {},             {},      {value: 'Out'}],
     [{value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}]
-];
 
 
 
 
 
+//------------ Class Cell creation -------------
 
-let cellExample = {
-    row: 4, // 1 to 9
-    col: 7, // 1 to 9
-    value: 'mine', // Out, Mine, 0, 1, 2, 3, 4, 5, 6, 7, 8
-    img: '', //Border, Cover, Cover w/flag, Cover w/QMark, EmptyGrid(value0), 1, 2, 3, 4, 5, 6, 7, 8, Mine
-    coverState: '' //Border, Covered, Flag, QMarq, Uncovered
+class Cell {
+    constructor() {
+        this.row = 0;
+        this.column = 0;
+        this.value = '';
+        this.imageToShow = '';
+    }
 }
 
 
 
+//------------ Function to create the board -------------
+
+function createBoardRow(cols) {
+    let boardRow = [];
+    for (let i = 0; i <= cols + 1; i++) {
+        boardRow.push(new Cell); 
+    }
+    return boardRow;
+}
+
+function createBoard(rows, cols) {
+    let board = [];
+    for (let i = 0; i <= rows + 1; i++) {
+        board.push(createBoardRow(cols));
+    }
+    return board;
+}
+console.log(createBoard(9, 9));
+
+
+
+    
 
 
 //------------ Cell value calculation when not assigned randomly already as mine -------------
@@ -98,13 +120,27 @@ function calculateCellValue(currentCellRow, currentCellCol) {
 };
 
 
-console.log(calculateCellValue(4,7));
+//console.log(calculateCellValue(4,7));
 
 
 
 
 
 
+
+
+function assignRandomMines(rows, columns, mines) {
+    let minesToAssign = mines;
+    let minesAssigned = 0;
+    while (minesAssigned < mines) {
+        let randomRow = Math.floor(Math.random()*rows) + 1;
+        let randomCol = Math.floor(Math.random()*cols) + 1;
+        if (game[randomRow][randomCol].value !== 'mine') {
+            game[randomRow][randomCol].value = 'mine';
+            minesAssigned += 1;
+        } 
+    }
+}
 
 
 
