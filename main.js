@@ -50,25 +50,22 @@ class Cell {
 
 //------------ Function to create the board -------------
 
-function createBoardRow(cols) {
-    let boardRow = [];
-    for (let i = 0; i <= cols + 1; i++) {
-        boardRow.push(new Cell); 
-    }
-    return boardRow;
-}
-
 function createBoard(rows, cols) {
     let board = [];
     for (let i = 0; i <= rows + 1; i++) {
-        board.push(createBoardRow(cols));
+        let boardRow = [];
+        for (let j = 0; j <= cols + 1; j++) {
+            boardRow.push(new Cell);
+        }
+        board.push(boardRow);
     }
     return board;
 }
-//console.log(createBoard(9, 9));
-
-let board = createBoard(9,9);
+let board = createBoard(9, 9);
 //console.log(board);
+
+
+
 
 
 
@@ -84,7 +81,7 @@ function assignRowColToCells(arr) {
     }
 }
 assignRowColToCells(board);
-//console.log(board);
+console.log(board);
 
 
 
@@ -105,7 +102,7 @@ function assignRandomMines(rows, cols, mines) {
         } 
     }
 }
-assignRandomMines(9,9,10);
+//assignRandomMines(9,9,10);
 //console.log(board);
 
 
@@ -137,18 +134,18 @@ function checkedAssignedMines(arr) {
 
 function calculateCellValue(currentCellRow, currentCellCol) {
 
-    let dirN = game[currentCellRow-1][currentCellCol];
-    let dirNE = game[currentCellRow-1][currentCellCol+1];
-    let dirE = game[currentCellRow][currentCellCol+1];
-    let dirSE = game[currentCellRow+1][currentCellCol+1];
-    let dirS = game[currentCellRow+1][currentCellCol];
-    let dirSW = game[currentCellRow+1][currentCellCol-1];
-    let dirW = game[currentCellRow][currentCellCol-1];
-    let dirNW = game[currentCellRow-1][currentCellCol-1];
+    let dirN = board[currentCellRow-1][currentCellCol];
+    let dirNE = board[currentCellRow-1][currentCellCol+1];
+    let dirE = board[currentCellRow][currentCellCol+1];
+    let dirSE = board[currentCellRow+1][currentCellCol+1];
+    let dirS = board[currentCellRow+1][currentCellCol];
+    let dirSW = board[currentCellRow+1][currentCellCol-1];
+    let dirW = board[currentCellRow][currentCellCol-1];
+    let dirNW = board[currentCellRow-1][currentCellCol-1];
     let adjacentMines = 0;
 
     // This cell value check
-    if (game[currentCellRow][currentCellCol].value === 'mine') {
+    if (board[currentCellRow][currentCellCol].value === 'mine') {
         return 'This cell is a mine';
     }
     // N cell value check
@@ -185,7 +182,6 @@ function calculateCellValue(currentCellRow, currentCellCol) {
     }
     return adjacentMines;
 };
-
 
 //console.log(calculateCellValue(4,7));
 
