@@ -17,9 +17,9 @@
     [{value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}, {value: 'Out'}],
     [{value: 'Out'},     {},              {},              {},              {},             {},             {},             {},             {},             {},      {value: 'Out'}],
     [{value: 'Out'},     {},              {},              {},              {},             {},             {},             {},             {},             {},      {value: 'Out'}],
-    [{value: 'Out'},     {},              {},              {},              {},             {},      {value: 'mine'}, {value: 'mine'}, {value: 'mine'},     {},      {value: 'Out'}],
-    [{value: 'Out'},     {},              {},              {},              {},             {},      {value: 'mine'}, {value: 'CELL'}, {value: 'mine'},     {},      {value: 'Out'}],
-    [{value: 'Out'},     {},              {},              {},              {},             {},      {value: 'mine'}, {value: 'mine'}, {value: 'mine'},     {},      {value: 'Out'}],
+    [{value: 'Out'},     {},              {},              {},              {},             {},      {value: 'm'}, {value: 'm'}, {value: 'm'},     {},      {value: 'Out'}],
+    [{value: 'Out'},     {},              {},              {},              {},             {},      {value: 'm'}, {value: 'CELL'}, {value: 'm'},     {},      {value: 'Out'}],
+    [{value: 'Out'},     {},              {},              {},              {},             {},      {value: 'm'}, {value: 'm'}, {value: 'm'},     {},      {value: 'Out'}],
     [{value: 'Out'},     {},              {},              {},              {},             {},             {},             {},             {},             {},      {value: 'Out'}],
     [{value: 'Out'},     {},              {},              {},              {},             {},             {},             {},             {},             {},      {value: 'Out'}],
     [{value: 'Out'},     {},              {},              {},              {},             {},             {},             {},             {},             {},      {value: 'Out'}],
@@ -80,42 +80,42 @@ assignRowColToCells(board);
 
 
 
-//------------ Function to random allocation of mines -------------
+//------------ Function to random allocation of ms -------------
 
-function assignRandomMines(rows, cols, mines) {
-    let minesToAssign = mines;
-    let minesAssigned = 0;
-    while (minesAssigned < mines) {
+function assignRandomms(rows, cols, ms) {
+    let msToAssign = ms;
+    let msAssigned = 0;
+    while (msAssigned < ms) {
         let randomRow = Math.floor(Math.random()*rows) + 1;
         let randomCol = Math.floor(Math.random()*cols) + 1;
-        if (board[randomRow][randomCol].value !== 'mine') {
-            board[randomRow][randomCol].value = 'mine';
-            minesAssigned += 1;
+        if (board[randomRow][randomCol].value !== 'm') {
+            board[randomRow][randomCol].value = 'm';
+            msAssigned += 1;
         } 
     }
 }
-assignRandomMines(9,9,10);
+assignRandomms(9,9,10);
 //console.log(board);
 
 
 
 
-//------------ Function to check assigned mines -------------
+//------------ Function to check assigned ms -------------
 
-function checkedAssignedMines(arr) {
-    let assignedMinesArr = [];
-    let countedMines = 0;
+function checkedAssignedms(arr) {
+    let assignedmsArr = [];
+    let countedms = 0;
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr[i].length; j++) {
-            if (arr[i][j].value === 'mine') {
-                countedMines += 1;
-                assignedMinesArr.push('Mine #' + countedMines + ' Row: ' + arr[i][j].row + ' Col: ' + arr[i][j].col);
+            if (arr[i][j].value === 'm') {
+                countedms += 1;
+                assignedmsArr.push('m #' + countedms + ' Row: ' + arr[i][j].row + ' Col: ' + arr[i][j].col);
             }
         }
     }
-    return assignedMinesArr;
+    return assignedmsArr;
 }
-//console.log(checkedAssignedMines(board));
+//console.log(checkedAssignedms(board));
 
 
 
@@ -143,7 +143,7 @@ assignBorders(board);
 
 
 
-//------------ Cell value calculation when not assigned randomly already as mine -------------
+//------------ Cell value calculation when not assigned randomly already as m -------------
 
 function calculateCellValue(row, col) {
 
@@ -155,45 +155,45 @@ function calculateCellValue(row, col) {
     let dirSW = board[row+1][col-1];
     let dirW = board[row][col-1];
     let dirNW = board[row-1][col-1];
-    let adjacentMines = 0;
+    let adjacentms = 0;
 
     // This cell value check
-    if (board[row][col].value !== 'mine') {
+    if (board[row][col].value !== 'm') {
 
             // N cell value check
-            if (dirN.value === 'mine') {
-                adjacentMines += 1;
+            if (dirN.value === 'm') {
+                adjacentms += 1;
             }
             // NE cell value check
-            if (dirNE.value === 'mine') {
-                adjacentMines += 1;
+            if (dirNE.value === 'm') {
+                adjacentms += 1;
             }
             // E cell value check
-            if (dirE.value === 'mine') {
-                adjacentMines += 1;
+            if (dirE.value === 'm') {
+                adjacentms += 1;
             }
             // SE cell value check
-            if (dirSE.value === 'mine') {
-                adjacentMines += 1;
+            if (dirSE.value === 'm') {
+                adjacentms += 1;
             }
             // S cell value check
-            if (dirS.value === 'mine') {
-                adjacentMines += 1;
+            if (dirS.value === 'm') {
+                adjacentms += 1;
             }
             // SW cell value check
-            if (dirSW.value === 'mine') {
-                adjacentMines += 1;
+            if (dirSW.value === 'm') {
+                adjacentms += 1;
             }
             // W cell value check
-            if (dirW.value === 'mine') {
-                adjacentMines += 1;
+            if (dirW.value === 'm') {
+                adjacentms += 1;
             }
             // NW cell value check
-            if (dirNW.value === 'mine') {
-                adjacentMines += 1;
+            if (dirNW.value === 'm') {
+                adjacentms += 1;
             }
     }
-    return adjacentMines;
+    return adjacentms;
 };
 
 //console.log(calculateCellValue(4,7));
@@ -205,7 +205,7 @@ function calculateCellValue(row, col) {
 function assignCellValue(arr) {
     for (let i = 1; i < arr.length - 1; i++) {
         for (let j = 1; j < arr[i].length - 1; j++) {
-            if (arr[i][j].value !== 'mine') {
+            if (arr[i][j].value !== 'm') {
                 arr[i][j].value = calculateCellValue(i, j);
             }
         }

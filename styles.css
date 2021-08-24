@@ -1,4 +1,103 @@
+
+
+
+
 body {
+    font-family: 'Indie Flower', cursive;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.covered {
+    height: 30px;
+    width: 30px;
+    background-image: url('Assets/Cellcover-image.png');
+    background-size: cover;
+    color: rgba(0,0,0,0);
+    text-align: center;
+}
+
+.flagged {
+    height: 30px;
+    width: 30px;
+    background-image: url('Assets/Flag-image.jpg');
+    background-size: cover;
+    color: rgba(0,0,0,0);
+    text-align: center;
+}
+
+.mined {
+
+}
+
+.value-0 {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    background-color: #e4edec;
+}
+
+.value-1 {
+    height: 30px;
+    width: 30px;
+    text-align: center;
     color: blue;
+    background-color: #e4edec;
+}
+
+.value-2 {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    color: green;
+    background-color: #e4edec;
+}
+
+.value-3 {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    color: red;
+    background-color: #e4edec;
+}
+
+.value-4 {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    color: purple;
+    background-color: #e4edec;
+}
+
+.value-5 {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    color: maroon;
+    background-color: #e4edec;
+}
+
+.value-6 {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    color: turquoise;
+    background-color: #e4edec;
+}
+
+.value-7 {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    color: black;
+    background-color: #e4edec;
+}
+
+.value-8 {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    color: gray;
+    background-color: #e4edec;
 }
 
