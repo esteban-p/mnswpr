@@ -163,7 +163,7 @@ function calculateCellValue(row, col) {
     let adjacentMines = 0;
 
     // This cell value check
-    if (board[row][col].value !== 'mine' && board[row][col].value !== 'out') {
+    if (board[row][col].value !== 'mine') {
 
             // N cell value check
             if (dirN.value === 'mine') {
@@ -205,13 +205,14 @@ function calculateCellValue(row, col) {
 
 
 
-
 //------------ Cell value assignment -------------
 
 function assignCellValue(arr) {
     for (i = 1; i < arr.length - 1; i++) {
         for (j = 1; j < arr[i].length - 1; j++) {
-            arr[i][j].value = calculateCellValue(i, j);
+            if (arr[i][j].value !== 'mine') {
+                arr[i][j].value = calculateCellValue(i, j);
+            }
         }
     }
 }
