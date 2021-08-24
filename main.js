@@ -141,7 +141,7 @@ function assignBorders(arr) {
         arr[lastRowIndex-1][i].value = 'out';
     }
 }
-//assignBorders(board);
+assignBorders(board);
 //console.log(board);
     
 
@@ -150,53 +150,53 @@ function assignBorders(arr) {
 
 //------------ Cell value calculation when not assigned randomly already as mine -------------
 
-function calculateCellValue(currentCellRow, currentCellCol) {
+function calculateCellValue(row, col) {
 
-    let dirN = board[currentCellRow-1][currentCellCol];
-    let dirNE = board[currentCellRow-1][currentCellCol+1];
-    let dirE = board[currentCellRow][currentCellCol+1];
-    let dirSE = board[currentCellRow+1][currentCellCol+1];
-    let dirS = board[currentCellRow+1][currentCellCol];
-    let dirSW = board[currentCellRow+1][currentCellCol-1];
-    let dirW = board[currentCellRow][currentCellCol-1];
-    let dirNW = board[currentCellRow-1][currentCellCol-1];
+    let dirN = board[row-1][col];
+    let dirNE = board[row-1][col+1];
+    let dirE = board[row][col+1];
+    let dirSE = board[row+1][col+1];
+    let dirS = board[row+1][col];
+    let dirSW = board[row+1][col-1];
+    let dirW = board[row][col-1];
+    let dirNW = board[row-1][col-1];
     let adjacentMines = 0;
 
     // This cell value check
-    if (board[currentCellRow][currentCellCol].value === 'mine') {
-        return 'This cell is a mine';
-    }
-    // N cell value check
-    if (dirN.value === 'mine') {
-        adjacentMines += 1;
-    }
-    // NE cell value check
-    if (dirNE.value === 'mine') {
-        adjacentMines += 1;
-    }
-    // E cell value check
-    if (dirE.value === 'mine') {
-        adjacentMines += 1;
-    }
-    // SE cell value check
-    if (dirSE.value === 'mine') {
-        adjacentMines += 1;
-    }
-    // S cell value check
-    if (dirS.value === 'mine') {
-        adjacentMines += 1;
-    }
-    // SW cell value check
-    if (dirSW.value === 'mine') {
-        adjacentMines += 1;
-    }
-    // W cell value check
-    if (dirW.value === 'mine') {
-        adjacentMines += 1;
-    }
-    // NW cell value check
-    if (dirNW.value === 'mine') {
-        adjacentMines += 1;
+    if (board[row][col].value !== 'mine' && board[row][col].value !== 'out') {
+
+            // N cell value check
+            if (dirN.value === 'mine') {
+                adjacentMines += 1;
+            }
+            // NE cell value check
+            if (dirNE.value === 'mine') {
+                adjacentMines += 1;
+            }
+            // E cell value check
+            if (dirE.value === 'mine') {
+                adjacentMines += 1;
+            }
+            // SE cell value check
+            if (dirSE.value === 'mine') {
+                adjacentMines += 1;
+            }
+            // S cell value check
+            if (dirS.value === 'mine') {
+                adjacentMines += 1;
+            }
+            // SW cell value check
+            if (dirSW.value === 'mine') {
+                adjacentMines += 1;
+            }
+            // W cell value check
+            if (dirW.value === 'mine') {
+                adjacentMines += 1;
+            }
+            // NW cell value check
+            if (dirNW.value === 'mine') {
+                adjacentMines += 1;
+            }
     }
     return adjacentMines;
 };
@@ -206,11 +206,17 @@ function calculateCellValue(currentCellRow, currentCellCol) {
 
 
 
-// //------------ Cell value assignment -------------
-// function assignCellValue(arr) {
-//     for 
-// }
+//------------ Cell value assignment -------------
 
+function assignCellValue(arr) {
+    for (i = 1; i < arr.length - 1; i++) {
+        for (j = 1; j < arr[i].length - 1; j++) {
+            arr[i][j].value = calculateCellValue(i, j);
+        }
+    }
+}
+assignCellValue(board);
+console.log(board);
 
 
 
