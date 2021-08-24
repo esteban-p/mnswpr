@@ -30,11 +30,6 @@
 
 
 
-
-
-
-
-
 //------------ Class Cell creation -------------
 
 class Cell {
@@ -71,8 +66,8 @@ let board = createBoard(9, 9);
 //------------ Function to assign row & col values to cell objects -------------
 
 function assignRowColToCells(arr) {
-    for (i = 0; i < arr.length; i++) {
-        for (j = 0; j <arr[i].length; j++) {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j <arr[i].length; j++) {
             arr[i][j].row = i;
             arr[i][j].col = j;
         }
@@ -110,8 +105,8 @@ assignRandomMines(9,9,10);
 function checkedAssignedMines(arr) {
     let assignedMinesArr = [];
     let countedMines = 0;
-    for (i = 0; i < arr.length; i++) {
-        for (j = 0; j < arr[i].length; j++) {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length; j++) {
             if (arr[i][j].value === 'mine') {
                 countedMines += 1;
                 assignedMinesArr.push('Mine #' + countedMines + ' Row: ' + arr[i][j].row + ' Col: ' + arr[i][j].col);
@@ -129,15 +124,15 @@ function checkedAssignedMines(arr) {
 //------------ Function to assign "out" values to borders -------------
 
 function assignBorders(arr) {
-    for (i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
         arr[i][0].value = 'out';
         arr[i][arr[i].length-1].value = 'out';
     }
-    for (i = 0; i < arr[0].length; i++) {
+    for (let i = 0; i < arr[0].length; i++) {
         arr[0][i].value = 'out';
     }
     let lastRowIndex = arr.length; 
-    for (i = 0; i < arr[0].length; i++) {
+    for (let i = 0; i < arr[0].length; i++) {
         arr[lastRowIndex-1][i].value = 'out';
     }
 }
@@ -208,8 +203,8 @@ function calculateCellValue(row, col) {
 //------------ Cell value assignment -------------
 
 function assignCellValue(arr) {
-    for (i = 1; i < arr.length - 1; i++) {
-        for (j = 1; j < arr[i].length - 1; j++) {
+    for (let i = 1; i < arr.length - 1; i++) {
+        for (let j = 1; j < arr[i].length - 1; j++) {
             if (arr[i][j].value !== 'mine') {
                 arr[i][j].value = calculateCellValue(i, j);
             }
@@ -217,7 +212,7 @@ function assignCellValue(arr) {
     }
 }
 assignCellValue(board);
-console.log(board);
+//console.log(board);
 
 
 
