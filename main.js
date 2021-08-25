@@ -36,6 +36,7 @@ class Cell {
     constructor(row, col) {
         this.row = 0;
         this.col = 0;
+        this.rowAndCol = '';
         this.value = '';
         this.imageToShow = '';
     }
@@ -70,6 +71,7 @@ function assignRowColToCells(arr) {
         for (let j = 0; j <arr[i].length; j++) {
             arr[i][j].row = i;
             arr[i][j].col = j;
+            arr[i][j].rowAndCol = 'r' + i + 'c' + j;
         }
     }
 }

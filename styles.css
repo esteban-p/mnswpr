@@ -26,15 +26,41 @@ body {
     text-align: center;
 }
 
-.mined {
+.questioned {
+    height: 30px;
+    width: 30px;
+    background-image: url('Assets/Question-image.png');
+    background-size: cover;
+    color: rgba(0,0,0,0);
+    text-align: center;
+}
 
+.mined {
+    height: 30px;
+    width: 30px;
+    background-image: url('Assets/Mine-image.png');
+    background-size: cover;
+    color: rgba(0,0,0,0);
+    text-align: center;
+    background-color: #c5e8e5;;
+}
+
+.exploded {
+    height: 30px;
+    width: 30px;
+    background-image: url('Assets/Mine-image.png');
+    background-size: cover;
+    color: rgba(0,0,0,0);
+    text-align: center;
+    background-color: red;
 }
 
 .value-0 {
     height: 30px;
     width: 30px;
+    color: rgba(0,0,0,0);
     text-align: center;
-    background-color: #e4edec;
+    background-color: #c5e8e5;;
 }
 
 .value-1 {
@@ -42,7 +68,7 @@ body {
     width: 30px;
     text-align: center;
     color: blue;
-    background-color: #e4edec;
+    background-color: #c5e8e5;
 }
 
 .value-2 {
@@ -50,7 +76,7 @@ body {
     width: 30px;
     text-align: center;
     color: green;
-    background-color: #e4edec;
+    background-color: #c5e8e5;;
 }
 
 .value-3 {
@@ -58,7 +84,7 @@ body {
     width: 30px;
     text-align: center;
     color: red;
-    background-color: #e4edec;
+    background-color: #c5e8e5;;
 }
 
 .value-4 {
@@ -66,7 +92,7 @@ body {
     width: 30px;
     text-align: center;
     color: purple;
-    background-color: #e4edec;
+    background-color: #c5e8e5;;
 }
 
 .value-5 {
@@ -74,7 +100,7 @@ body {
     width: 30px;
     text-align: center;
     color: maroon;
-    background-color: #e4edec;
+    background-color: #c5e8e5;;
 }
 
 .value-6 {
@@ -82,7 +108,7 @@ body {
     width: 30px;
     text-align: center;
     color: turquoise;
-    background-color: #e4edec;
+    background-color: #c5e8e5;;
 }
 
 .value-7 {
@@ -90,7 +116,7 @@ body {
     width: 30px;
     text-align: center;
     color: black;
-    background-color: #e4edec;
+    background-color: #c5e8e5;;
 }
 
 .value-8 {
@@ -98,6 +124,6 @@ body {
     width: 30px;
     text-align: center;
     color: gray;
-    background-color: #e4edec;
+    background-color: #c5e8e5;;
 }
 
