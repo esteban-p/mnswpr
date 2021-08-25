@@ -51,16 +51,9 @@ document.querySelectorAll('.cell').forEach((element) => {
       const element_SW_Id = 'r' + (+elementRow + 1) + 'c' + (+elementCol - 1);
       const element_W_Id = 'r' + (+elementRow) + 'c' + (+elementCol - 1);
       const element_NW_Id = 'r' + (+elementRow - 1) + 'c' + (+elementCol - 1);      
-    //   console.log('N: ' + element_N_Id);
-    //   console.log('NE: ' + element_NE_Id);
-    //   console.log('E: ' + element_E_Id);
-    //   console.log('SE: ' + element_SE_Id);
-    //   console.log('S: ' + element_S_Id);
-    //   console.log('SW: ' + element_SW_Id);
-    //   console.log('W: ' + element_W_Id);
-    //   console.log('NW: ' + element_NW_Id);
 
-        
+
+       // --- When a mine is left-clicked ---
 
       if (elementValue === 'm') {
         element.className = 'cell exploded';
@@ -79,58 +72,61 @@ document.querySelectorAll('.cell').forEach((element) => {
                 else if (elValue === '8') {el.className = 'cell value-8';}
             } 
         }); 
-    
+        
+        let gameOver = [];
+        gameOver.push("Bet you didn't see that coming 😜 ");
+        gameOver.push("Better luck next time 🤷🏻‍♂️ "); 
+        gameOver.push("Uhhh... you were so close! 🥺 ");
+        gameOver.push("Hahaha... looser! 🤣 "); 
+        gameOver.push("How does it feel? 💥 "); 
+        gameOver.push("Surpriiiise! 💣 "); 
+        gameOver.push("I hope you get better at this soon 🙄 "); 
+        gameOver.push("Are you planning to win sometime? 🥱 "); 
+        gameOver.push("You are fired from the bomb squad!!! 🚒 "); 
+        let randomNum = (Math.floor(Math.random() * gameOver.length));
+        let gameOverPick = gameOver[randomNum];
+        document.querySelector('#message').innerHTML = gameOverPick;
 
- 
+        // ---  To blank cells ---
 
       } else if (elementValue === '0') {
         element.className = 'cell value-0';
         let checkedArr = [];
         function uncoverAroundZero (coords) {
-            // if (checkedArr.includes(coords)) {
-            //     return;
-            // }
-            if(element_N_Id.length === 4) {checkAdjCells(element_N_Id)};
-            if(element_NE_Id.length === 4) checkAdjCells(element_NE_Id);
-            if(element_E_Id.length === 4) checkAdjCells(element_E_Id);
-            if(element_SE_Id.length === 4) checkAdjCells(element_SE_Id);
-            if(element_S_Id.length === 4) checkAdjCells(element_S_Id);
-            if(element_SW_Id.length === 4) checkAdjCells(element_SW_Id);
-            if(element_W_Id.length === 4) checkAdjCells(element_W_Id);
-            if(element_NW_Id.length === 4) checkAdjCells(element_NW_Id);
-            // checkedArr.push(coords);
-            // console.log(checkedArr);
+            //console.log(coords);
+
+            checkAdjCells(element_N_Id);
+            checkAdjCells(element_NE_Id);
+            checkAdjCells(element_E_Id);
+            checkAdjCells(element_SE_Id);
+            checkAdjCells(element_S_Id);
+            checkAdjCells(element_SW_Id);
+            checkAdjCells(element_W_Id);
+            checkAdjCells(element_NW_Id);
+
         }
         uncoverAroundZero(elementID)
+
 
                 // -------- Function called for each adjacent when the left-clicked cell is value zero  ---------
 
                 function checkAdjCells(coordinates) {
-                    //console.log(coordinates);
+                    if (coordinates.length > 4) {return};
                     let row = coordinates.slice(1,2);
                     let col = coordinates.slice(3,4);
+
                     let cellToCheck = document.querySelector(`#r${row}c${col}`);
-                    //console.log('cellTocheck: ' + cellToCheck);
-                    if (col == '0') {
-                        return;
-                    }
-                    if (row == '0') {
-                        return;
-                    }
-                    if (col == '10') {
-                        return;
-                    }
-                    if (row == '10') {
-                        return;
-                    }
+                    if (col == '0') {return;}
+                    if (row == '0') {return;}
+
                     let valueToCheck = document.querySelector(`#r${row}c${col} span`).innerHTML;
                     //console.log('valueToCheck: ' + valueToCheck);
 
 
                     if (valueToCheck === '0') {
                         console.log(coordinates + ' is a zero... Now what!?');
-                        // to work the function loop
-                        uncoverAroundZero(coordinates);
+                        // to make the function loop work here
+                        //uncoverAroundZero(coordinates);
                         
                     } 
                     else if (valueToCheck === '1') {cellToCheck.className = 'cell value-1';} 
@@ -141,11 +137,13 @@ document.querySelectorAll('.cell').forEach((element) => {
                     else if (valueToCheck === '6') {cellToCheck.className = 'cell value-6';}
                     else if (valueToCheck === '7') {cellToCheck.className = 'cell value-7';}
                     else if (valueToCheck === '8') {cellToCheck.className = 'cell value-8';}
+
+
                 }
 
 
 
-
+          // ---  To the numbered cells ---
 
         } else if (elementValue === '1') {
             element.className = 'cell value-1';
@@ -173,50 +171,12 @@ document.querySelectorAll('.cell').forEach((element) => {
 
 
 
- 
-        // // -------- Function called for each adjacent when the left-clicked cell is value zero  ---------
-
-        // function checkAdjCells(coordinates) {
-        //     //console.log(coordinates);
-        //     let row = coordinates.slice(1,2);
-        //     let col = coordinates.slice(3,4);
-        //     let cellToCheck = document.querySelector(`#r${row}c${col}`);
-        //     //console.log('cellTocheck: ' + cellToCheck);
-        //     if (col == '0') {
-        //         return;
-        //     }
-        //     if (row == '0') {
-        //         return;
-        //     }
-        //     if (col == '10') {
-        //         return;
-        //     }
-        //     if (row == '10') {
-        //         return;
-        //     }
-        //     let valueToCheck = document.querySelector(`#r${row}c${col} span`).innerHTML;
-        //     //console.log('valueToCheck: ' + valueToCheck);
 
 
-        //     if (valueToCheck === '0') {
-        //         console.log(coordinates + ' is a zero... Now what!?');
-        //         //uncoverAroundZero(coordinates);
-                
-        //         //--- DO NOT CALL THE SAME FUNCTION!!! >>> INFINITE LOOP ---
-        //         //checkAdjCells(coordinates);
-        //         //----------------------------------------------------------
 
-        //     } 
-        //     else if (valueToCheck === '1') {cellToCheck.className = 'cell value-1';} 
-        //     else if (valueToCheck === '2') {cellToCheck.className = 'cell value-2';}
-        //     else if (valueToCheck === '3') {cellToCheck.className = 'cell value-3';}
-        //     else if (valueToCheck === '4') {cellToCheck.className = 'cell value-4';}
-        //     else if (valueToCheck === '5') {cellToCheck.className = 'cell value-5';}
-        //     else if (valueToCheck === '6') {cellToCheck.className = 'cell value-6';}
-        //     else if (valueToCheck === '7') {cellToCheck.className = 'cell value-7';}
-        //     else if (valueToCheck === '8') {cellToCheck.className = 'cell value-8';}
-        // }
-               
+
+
+
 
 
 
@@ -344,15 +304,7 @@ document.querySelectorAll('.cell').forEach((element) => {
 
 
 
-const message1 = "Bet you didn't see that coming 😜 ";
-const message2 = "Better luck next time 🤷🏻‍♂️ ";
-const message3 = "Uhhh... you were so close! 🥺 ";
-const message4 = "Hahaha... looser! 🤣 ";
-const message5 = "How does it feel? 💥 ";
-const message6 = "Surpriiiise! 💣 ";
-const message7 = "I hope you get better at this soon 🙄 ";
-const message8 = "Are you planning to win sometime? 🥱 "
-const message9 = "You are fired from the bomb squad!!! 🚒 "
+
 
 
 
@@ -375,3 +327,47 @@ const message9 = "You are fired from the bomb squad!!! 🚒 "
 // checkAdjCells(element_SW_Id);
 // checkAdjCells(element_W_Id);
 // checkAdjCells(element_NW_Id);
+
+
+// function uncoverAroundZero (coords) {
+//     //console.log(coords);
+
+//     if(element_N_Id.length === 4) {
+//         checkAdjCells(element_N_Id);
+//     }
+//     if(element_NE_Id.length === 4) {
+//         checkAdjCells(element_NE_Id);
+//     }
+//     if(element_E_Id.length === 4) {
+//         checkAdjCells(element_E_Id);
+//     }
+//     if(element_SE_Id.length === 4) {
+//         checkAdjCells(element_SE_Id);
+//     }
+//     if(element_S_Id.length === 4) {
+//         checkAdjCells(element_S_Id);
+//     }
+//     if(element_SW_Id.length === 4) {
+//         checkAdjCells(element_SW_Id);
+//     }
+//     if(element_W_Id.length === 4) {
+//         checkAdjCells(element_W_Id);
+//     }
+//     if(element_NW_Id.length === 4) {
+//         checkAdjCells(element_NW_Id);
+//     }
+//     console.log(checkedArr);
+// }
+
+
+
+
+
+    //   console.log('N: ' + element_N_Id);
+    //   console.log('NE: ' + element_NE_Id);
+    //   console.log('E: ' + element_E_Id);
+    //   console.log('SE: ' + element_SE_Id);
+    //   console.log('S: ' + element_S_Id);
+    //   console.log('SW: ' + element_SW_Id);
+    //   console.log('W: ' + element_W_Id);
+    //   console.log('NW: ' + element_NW_Id);

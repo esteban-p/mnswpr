@@ -4,13 +4,17 @@
 
 body {
     font-family: 'Indie Flower', cursive;
-    font-size: larger;
+    font-size: x-large;
     font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .covered {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     background-image: url('Assets/Cellcover-image.png');
     background-size: cover;
     color: rgba(0,0,0,0);
@@ -18,8 +22,8 @@ body {
 }
 
 .flagged {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     background-image: url('Assets/Flag-image.jpg');
     background-size: cover;
     color: rgba(0,0,0,0);
@@ -27,8 +31,8 @@ body {
 }
 
 .questioned {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     background-image: url('Assets/Question-image.png');
     background-size: cover;
     color: rgba(0,0,0,0);
@@ -36,8 +40,8 @@ body {
 }
 
 .mined {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     background-image: url('Assets/Mine-image.png');
     background-size: cover;
     color: rgba(0,0,0,0);
@@ -46,8 +50,8 @@ body {
 }
 
 .exploded {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     background-image: url('Assets/Mine-image.png');
     background-size: cover;
     color: rgba(0,0,0,0);
@@ -56,79 +60,79 @@ body {
 }
 
 .value-0 {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     color: rgba(0,0,0,0);
     text-align: center;
     background-color: #c5e8e5;;
 }
 
 .value-1 {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     text-align: center;
     color: blue;
     background-color: #c5e8e5;
 }
 
 .value-2 {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     text-align: center;
     color: green;
     background-color: #c5e8e5;;
 }
 
 .value-3 {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     text-align: center;
     color: red;
     background-color: #c5e8e5;;
 }
 
 .value-4 {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     text-align: center;
     color: purple;
     background-color: #c5e8e5;;
 }
 
 .value-5 {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     text-align: center;
     color: maroon;
     background-color: #c5e8e5;;
 }
 
 .value-6 {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     text-align: center;
     color: turquoise;
     background-color: #c5e8e5;;
 }
 
 .value-7 {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     text-align: center;
     color: black;
     background-color: #c5e8e5;;
 }
 
 .value-8 {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     text-align: center;
     color: gray;
     background-color: #c5e8e5;;
 }
 
-/* #reload-button {
-    background-color: lightblue;
+#reload-button {
+    background-color: lightgreen;
     border: none;
     color: black;
     padding: 15px 32px;
@@ -136,4 +140,4 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-  } */
+  }
