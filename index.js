@@ -33,12 +33,34 @@ document.querySelector('#board-div').innerHTML = htmlToAdd;
 
 document.querySelectorAll('.cell').forEach((element) => {
     element.addEventListener('click', () => {
-      console.log('Cell clicked: ', element);
+      //console.log('Cell clicked: ', element);
       const elementValue = element.querySelector('span').innerHTML;
       //console.log(elementValue);
       const elementID = element.getAttribute('id');
-      console.log(elementID);
-      
+      //console.log('This element ID:' + elementID);
+      const elementRow = elementID.slice(1,2); 
+      //console.log(elementRow);
+      const elementCol = elementID.slice(3,4); 
+      //console.log(elementCol);
+
+      const element_N_Id = 'r' + (+elementRow - 1) + 'c' + (+elementCol);
+      const element_NE_Id = 'r' + (+elementRow - 1) + 'c' + (+elementCol + 1);
+      const element_E_Id = 'r' + (+elementRow) + 'c' + (+elementCol + 1);
+      const element_SE_Id = 'r' + (+elementRow + 1) + 'c' + (+elementCol + 1);
+      const element_S_Id = 'r' + (+elementRow + 1) + 'c' + (+elementCol);
+      const element_SW_Id = 'r' + (+elementRow + 1) + 'c' + (+elementCol - 1);
+      const element_W_Id = 'r' + (+elementRow) + 'c' + (+elementCol - 1);
+      const element_NW_Id = 'r' + (+elementRow - 1) + 'c' + (+elementCol - 1);      
+    //   console.log('N: ' + element_N_Id);
+    //   console.log('NE: ' + element_NE_Id);
+    //   console.log('E: ' + element_E_Id);
+    //   console.log('SE: ' + element_SE_Id);
+    //   console.log('S: ' + element_S_Id);
+    //   console.log('SW: ' + element_SW_Id);
+    //   console.log('W: ' + element_W_Id);
+    //   console.log('NW: ' + element_NW_Id);
+
+        
 
       if (elementValue === 'm') {
         element.className = 'cell exploded';
@@ -55,16 +77,15 @@ document.querySelectorAll('.cell').forEach((element) => {
                 else if (elValue === '6') {el.className = 'cell value-6';}
                 else if (elValue === '7') {el.className = 'cell value-7';}
                 else if (elValue === '8') {el.className = 'cell value-8';}
-            }
-        });
+            } 
+        }); 
     
 
-
+ 
 
       } else if (elementValue === '0') {
         element.className = 'cell value-0';
-
-
+        
 
 
       } else if (elementValue === '1') {
@@ -107,18 +128,6 @@ document.querySelectorAll('.cell').forEach((element) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // const allCells = document.getElementsByClassName('cell');
 // console.log(allCells);
 
@@ -130,13 +139,10 @@ document.querySelectorAll('.cell').forEach((element) => {
 
 
 
-
-
 //  .addEventListener('click') => {
 //     // TODO: write some code here
 //     console.log('Cell clicked: ', cell);
 //   });
-
 
 
 
