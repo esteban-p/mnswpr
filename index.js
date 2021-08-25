@@ -37,7 +37,7 @@ document.querySelectorAll('.cell').forEach((element) => {
       const elementValue = element.querySelector('span').innerHTML;
       //console.log(elementValue);
       const elementID = element.getAttribute('id');
-      console.log('This element ID:' + elementID);
+      console.log('Clicked cell ID:' + elementID);
       const elementRow = elementID.slice(1,2); 
       //console.log(elementRow);
       const elementCol = elementID.slice(3,4); 
@@ -91,10 +91,8 @@ document.querySelectorAll('.cell').forEach((element) => {
 
       } else if (elementValue === '0') {
         element.className = 'cell value-0';
-        let checkedArr = [];
-        function uncoverAroundZero (coords) {
-            //console.log(coords);
 
+        function uncoverAroundZero (coords) {
             checkAdjCells(element_N_Id);
             checkAdjCells(element_NE_Id);
             checkAdjCells(element_E_Id);
@@ -103,7 +101,6 @@ document.querySelectorAll('.cell').forEach((element) => {
             checkAdjCells(element_SW_Id);
             checkAdjCells(element_W_Id);
             checkAdjCells(element_NW_Id);
-
         }
         uncoverAroundZero(elementID)
 
@@ -111,6 +108,9 @@ document.querySelectorAll('.cell').forEach((element) => {
                 // -------- Function called for each adjacent when the left-clicked cell is value zero  ---------
 
                 function checkAdjCells(coordinates) {
+                    
+                    //console.log(document.querySelector('span').innerHTML);
+
                     if (coordinates.length > 4) {return};
                     let row = coordinates.slice(1,2);
                     let col = coordinates.slice(3,4);
@@ -125,7 +125,7 @@ document.querySelectorAll('.cell').forEach((element) => {
 
                     if (valueToCheck === '0') {
                         console.log(coordinates + ' is a zero... Now what!?');
-                        // to make the function loop work here
+                        // to make the function loop work here ???
                         //uncoverAroundZero(coordinates);
                         
                     } 
@@ -143,7 +143,7 @@ document.querySelectorAll('.cell').forEach((element) => {
 
 
 
-          // ---  To the numbered cells ---
+          // ---  Change class to the numbered cells ---
 
         } else if (elementValue === '1') {
             element.className = 'cell value-1';
@@ -183,54 +183,6 @@ document.querySelectorAll('.cell').forEach((element) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-// const r = 4;
-// const c = 5;
-// console.log(document.querySelector(`#r${r}c${c}`));
-// console.log(document.querySelector(`#r${r}c${c} span`).innerHTML);
-
-// console.log(document.querySelectorAll('td'));
-// console.log(document.querySelectorAll('td').length);
-
-
-
-
-
-
-// const allCells = document.getElementsByClassName('cell');
-// console.log(allCells);
-
-// for (cell in allCells) {
-//     console.log(cell);
-// }
-
-
-
-
-
-//  .addEventListener('click') => {
-//     // TODO: write some code here
-//     console.log('Cell clicked: ', cell);
-//   });
-
-
-
-
-// let target2 = document.getElementById('.table-board');
-// console.log(target2);
-
-// let target3 = document.querySelector("#r1c2");
-// console.log(target3);
 
 
 
@@ -301,68 +253,6 @@ document.querySelectorAll('.cell').forEach((element) => {
 // else if (valueToCheck === '8') {cellToCheck.className = 'cell value-8';}
 
 
-
-
-
-
-
-
-
-
-
-// if(element_N_Id.length === 4) {checkAdjCells(element_N_Id)};
-// if(element_NE_Id.length === 4) checkAdjCells(element_NE_Id);
-// if(element_E_Id.length === 4) checkAdjCells(element_E_Id);
-// if(element_SE_Id.length === 4) checkAdjCells(element_SE_Id);
-// if(element_S_Id.length === 4) checkAdjCells(element_S_Id);
-// if(element_SW_Id.length === 4) checkAdjCells(element_SW_Id);
-// if(element_W_Id.length === 4) checkAdjCells(element_W_Id);
-// if(element_NW_Id.length === 4) checkAdjCells(element_NW_Id);
-
-// checkAdjCells(element_N_Id);
-// checkAdjCells(element_NE_Id);
-// checkAdjCells(element_E_Id);
-// checkAdjCells(element_SE_Id);
-// checkAdjCells(element_S_Id);
-// checkAdjCells(element_SW_Id);
-// checkAdjCells(element_W_Id);
-// checkAdjCells(element_NW_Id);
-
-
-// function uncoverAroundZero (coords) {
-//     //console.log(coords);
-
-//     if(element_N_Id.length === 4) {
-//         checkAdjCells(element_N_Id);
-//     }
-//     if(element_NE_Id.length === 4) {
-//         checkAdjCells(element_NE_Id);
-//     }
-//     if(element_E_Id.length === 4) {
-//         checkAdjCells(element_E_Id);
-//     }
-//     if(element_SE_Id.length === 4) {
-//         checkAdjCells(element_SE_Id);
-//     }
-//     if(element_S_Id.length === 4) {
-//         checkAdjCells(element_S_Id);
-//     }
-//     if(element_SW_Id.length === 4) {
-//         checkAdjCells(element_SW_Id);
-//     }
-//     if(element_W_Id.length === 4) {
-//         checkAdjCells(element_W_Id);
-//     }
-//     if(element_NW_Id.length === 4) {
-//         checkAdjCells(element_NW_Id);
-//     }
-//     console.log(checkedArr);
-// }
-
-
-
-
-
     //   console.log('N: ' + element_N_Id);
     //   console.log('NE: ' + element_NE_Id);
     //   console.log('E: ' + element_E_Id);
@@ -371,3 +261,111 @@ document.querySelectorAll('.cell').forEach((element) => {
     //   console.log('SW: ' + element_SW_Id);
     //   console.log('W: ' + element_W_Id);
     //   console.log('NW: ' + element_NW_Id);
+
+
+
+
+
+
+
+
+
+
+// const r = 4;
+// const c = 5;
+// console.log(document.querySelector(`#r${r}c${c}`));
+// console.log(document.querySelector(`#r${r}c${c} span`).innerHTML);
+
+// console.log(document.querySelectorAll('td'));
+// console.log(document.querySelectorAll('td').length);
+
+
+
+
+
+
+// const allCells = document.getElementsByClassName('cell');
+// console.log(allCells);
+
+// for (cell in allCells) {
+//     console.log(cell);
+// }
+
+
+
+
+
+//  .addEventListener('click') => {
+//     // TODO: write some code here
+//     console.log('Cell clicked: ', cell);
+//   });
+
+
+
+
+// let target2 = document.getElementById('.table-board');
+// console.log(target2);
+
+// let target3 = document.querySelector("#r1c2");
+// console.log(target3);
+
+
+
+
+
+
+
+
+    //     // ---  To blank cells ---
+
+    // } else if (elementValue === '0') {
+    //     element.className = 'cell value-0';
+    //     let checkedArr = [];
+    //     function uncoverAroundZero (coords) {
+    //         //console.log(coords);
+
+    //         checkAdjCells(element_N_Id);
+    //         checkAdjCells(element_NE_Id);
+    //         checkAdjCells(element_E_Id);
+    //         checkAdjCells(element_SE_Id);
+    //         checkAdjCells(element_S_Id);
+    //         checkAdjCells(element_SW_Id);
+    //         checkAdjCells(element_W_Id);
+    //         checkAdjCells(element_NW_Id);
+
+    //     }
+    //     uncoverAroundZero(elementID)
+
+
+    //             // -------- Function called for each adjacent when the left-clicked cell is value zero  ---------
+
+    //             function checkAdjCells(coordinates) {
+    //                 if (coordinates.length > 4) {return};
+    //                 let row = coordinates.slice(1,2);
+    //                 let col = coordinates.slice(3,4);
+
+    //                 let cellToCheck = document.querySelector(`#r${row}c${col}`);
+    //                 if (col == '0') {return;}
+    //                 if (row == '0') {return;}
+
+    //                 let valueToCheck = document.querySelector(`#r${row}c${col} span`).innerHTML;
+    //                 //console.log('valueToCheck: ' + valueToCheck);
+
+
+    //                 if (valueToCheck === '0') {
+    //                     console.log(coordinates + ' is a zero... Now what!?');
+    //                     // to make the function loop work here
+    //                     //uncoverAroundZero(coordinates);
+                        
+    //                 } 
+    //                 else if (valueToCheck === '1') {cellToCheck.className = 'cell value-1';} 
+    //                 else if (valueToCheck === '2') {cellToCheck.className = 'cell value-2';}
+    //                 else if (valueToCheck === '3') {cellToCheck.className = 'cell value-3';}
+    //                 else if (valueToCheck === '4') {cellToCheck.className = 'cell value-4';}
+    //                 else if (valueToCheck === '5') {cellToCheck.className = 'cell value-5';}
+    //                 else if (valueToCheck === '6') {cellToCheck.className = 'cell value-6';}
+    //                 else if (valueToCheck === '7') {cellToCheck.className = 'cell value-7';}
+    //                 else if (valueToCheck === '8') {cellToCheck.className = 'cell value-8';}
+
+
+    //             }
