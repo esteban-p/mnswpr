@@ -237,11 +237,11 @@ let randomNumGameOver = (Math.floor(Math.random() * gameOver.length));
 let gameOverPick = gameOver[randomNumGameOver];
 
 let youWon = [];
-youWon.push("1");
-youWon.push("2");
-youWon.push("3");
-youWon.push("4");
-youWon.push("5");
+youWon.push("Well done champ! 💪🏼 ");
+youWon.push("🎉 Congrats!!! 🥳 ");
+youWon.push("Oh yeah, baby!!! 😎 ");
+youWon.push("You nailed it! 🎯 ");
+youWon.push("Welcome to our bomb squad 🚒 ");
 let randomNumYouWon = (Math.floor(Math.random() * youWon.length));
 let youWonPick = youWon[randomNumYouWon];
 
