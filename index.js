@@ -233,6 +233,7 @@ gameOver.push("Surpriiiise! 💣 ");
 gameOver.push("I hope you get better at this soon 🙄 "); 
 gameOver.push("Are you planning to win sometime? 🥱 "); 
 gameOver.push("You are fired from the bomb squad!!! 🚒 "); 
+gameOver.push("Ouch! 🙈");
 let randomNumGameOver = (Math.floor(Math.random() * gameOver.length));
 let gameOverPick = gameOver[randomNumGameOver];
 
@@ -241,7 +242,7 @@ youWon.push("Well done champ! 💪🏼 ");
 youWon.push("🎉 Congrats!!! 🥳 ");
 youWon.push("Oh yeah, baby!!! 😎 ");
 youWon.push("You nailed it! 🎯 ");
-youWon.push("Welcome to our bomb squad 🚒 ");
+youWon.push("😀 Welcome to our bomb squad 🚒 ");
 let randomNumYouWon = (Math.floor(Math.random() * youWon.length));
 let youWonPick = youWon[randomNumYouWon];
 
@@ -261,7 +262,18 @@ let youWonPick = youWon[randomNumYouWon];
 
 
 
-// ------------ Create board in DOM on load with event listener -------------
+
+
+
+
+
+
+
+
+
+
+
+//------------ Create board in DOM on load with event listener -------------
 
 // window.addEventListener('load', (event) => {   
 //     let htmlToAdd = '';
@@ -289,6 +301,8 @@ let youWonPick = youWon[randomNumYouWon];
 //     //console.log(htmlToAdd);
 //     document.querySelector('#board-div').innerHTML = htmlToAdd;
 // });
+
+// console.log('test: ' + document.querySelector('.cell'));
 
 
 
