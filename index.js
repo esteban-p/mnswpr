@@ -25,8 +25,10 @@ htmlToAdd += `
 //console.log(htmlToAdd);
 document.querySelector('#board-div').innerHTML = htmlToAdd;
 
-function checkCell() {
+function checkCell(event) {
     //console.log('Cell clicked: ', element);
+    const element = event.currentTarget;
+    console.log(element);
     const elementValue = element.querySelector('span').innerHTML;
     //console.log(elementValue);
     const elementID = element.getAttribute('id');
