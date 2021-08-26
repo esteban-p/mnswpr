@@ -6,18 +6,18 @@ htmlToAdd += `
 <tbody>
 `;
 for (let i = 1; i < board.length - 1; i++) {
-htmlToAdd += `
+    htmlToAdd += `
     <tr>
 `;
-for (let j = 1; j < board[i].length - 1; j++) {
-    htmlToAdd += `
+    for (let j = 1; j < board[i].length - 1; j++) {
+        htmlToAdd += `
         <td id='r${board[i][j].row}c${board[i][j].col}' class='cell covered'><span>${board[i][j].value}</span></td>
     `
-}
-htmlToAdd += `
+    }
+    htmlToAdd += `
     </tr>
 `;
-}  
+}
 htmlToAdd += `
 </tbody>
 </table>
@@ -25,62 +25,55 @@ htmlToAdd += `
 //console.log(htmlToAdd);
 document.querySelector('#board-div').innerHTML = htmlToAdd;
 
+function checkCell() {
+    //console.log('Cell clicked: ', element);
+    const elementValue = element.querySelector('span').innerHTML;
+    //console.log(elementValue);
+    const elementID = element.getAttribute('id');
+    console.log('Clicked cell ID:' + elementID);
+    const elementRow = elementID.slice(1, 2);
+    //console.log(elementRow);
+    const elementCol = elementID.slice(3, 4);
+    //console.log(elementCol);
+
+    const element_N_Id = 'r' + (+elementRow - 1) + 'c' + (+elementCol);
+    const element_NE_Id = 'r' + (+elementRow - 1) + 'c' + (+elementCol + 1);
+    const element_E_Id = 'r' + (+elementRow) + 'c' + (+elementCol + 1);
+    const element_SE_Id = 'r' + (+elementRow + 1) + 'c' + (+elementCol + 1);
+    const element_S_Id = 'r' + (+elementRow + 1) + 'c' + (+elementCol);
+    const element_SW_Id = 'r' + (+elementRow + 1) + 'c' + (+elementCol - 1);
+    const element_W_Id = 'r' + (+elementRow) + 'c' + (+elementCol - 1);
+    const element_NW_Id = 'r' + (+elementRow - 1) + 'c' + (+elementCol - 1);
 
 
+    // --- When a mine is left-clicked ---
 
-
-// -------- Apply the corresponding class to left-clicked cells  ---------
-
-document.querySelectorAll('.cell').forEach((element) => {
-    element.addEventListener('click', () => {
-        //console.log('Cell clicked: ', element);
-        const elementValue = element.querySelector('span').innerHTML;
-        //console.log(elementValue);
-        const elementID = element.getAttribute('id');
-        console.log('Clicked cell ID:' + elementID);
-        const elementRow = elementID.slice(1,2); 
-        //console.log(elementRow);
-        const elementCol = elementID.slice(3,4); 
-        //console.log(elementCol);
-
-        const element_N_Id = 'r' + (+elementRow - 1) + 'c' + (+elementCol);
-        const element_NE_Id = 'r' + (+elementRow - 1) + 'c' + (+elementCol + 1);
-        const element_E_Id = 'r' + (+elementRow) + 'c' + (+elementCol + 1);
-        const element_SE_Id = 'r' + (+elementRow + 1) + 'c' + (+elementCol + 1);
-        const element_S_Id = 'r' + (+elementRow + 1) + 'c' + (+elementCol);
-        const element_SW_Id = 'r' + (+elementRow + 1) + 'c' + (+elementCol - 1);
-        const element_W_Id = 'r' + (+elementRow) + 'c' + (+elementCol - 1);
-        const element_NW_Id = 'r' + (+elementRow - 1) + 'c' + (+elementCol - 1);      
-
-
-        // --- When a mine is left-clicked ---
-
-        if (elementValue === 'm') {
+    if (elementValue === 'm') {
         element.className = 'cell exploded';
         document.querySelectorAll('.cell').forEach((el) => {
             const elValue = el.querySelector('span').innerHTML;
-            if ( el.getAttribute('id') !== element.getAttribute('id') ) {
-                if (elValue === 'm') {el.className = 'cell mined';}
-                else if (elValue === '0') {el.className = 'cell value-0';}
-                else if (elValue === '1') {el.className = 'cell value-1';}
-                else if (elValue === '2') {el.className = 'cell value-2';}
-                else if (elValue === '3') {el.className = 'cell value-3';}
-                else if (elValue === '4') {el.className = 'cell value-4';}
-                else if (elValue === '5') {el.className = 'cell value-5';}
-                else if (elValue === '6') {el.className = 'cell value-6';}
-                else if (elValue === '7') {el.className = 'cell value-7';}
-                else if (elValue === '8') {el.className = 'cell value-8';}
-            } 
-        }); 
-        
+            if (el.getAttribute('id') !== element.getAttribute('id')) {
+                if (elValue === 'm') { el.className = 'cell mined'; }
+                else if (elValue === '0') { el.className = 'cell value-0'; }
+                else if (elValue === '1') { el.className = 'cell value-1'; }
+                else if (elValue === '2') { el.className = 'cell value-2'; }
+                else if (elValue === '3') { el.className = 'cell value-3'; }
+                else if (elValue === '4') { el.className = 'cell value-4'; }
+                else if (elValue === '5') { el.className = 'cell value-5'; }
+                else if (elValue === '6') { el.className = 'cell value-6'; }
+                else if (elValue === '7') { el.className = 'cell value-7'; }
+                else if (elValue === '8') { el.className = 'cell value-8'; }
+            }
+        });
+
         document.querySelector('#message').innerHTML = gameOverPick;
 
         // ---  To blank cells ---
 
-        } else if (elementValue === '0') {
+    } else if (elementValue === '0') {
         element.className = 'cell value-0';
 
-        function uncoverAroundZero (coords) {
+        function uncoverAroundZero(coords) {
             checkAdjCells(element_N_Id);
             checkAdjCells(element_NE_Id);
             checkAdjCells(element_E_Id);
@@ -93,68 +86,68 @@ document.querySelectorAll('.cell').forEach((element) => {
         uncoverAroundZero(elementID)
 
 
-                // -------- Function called for each adjacent when the left-clicked cell is value zero  ---------
+        // -------- Function called for each adjacent when the left-clicked cell is value zero  ---------
 
-                function checkAdjCells(coordinates) {
-                    
-                    //console.log(document.querySelector('span').innerHTML);
+        function checkAdjCells(coordinates) {
 
-                    if (coordinates.length > 4) {return};
-                    let row = coordinates.slice(1,2);
-                    let col = coordinates.slice(3,4);
+            //console.log(document.querySelector('span').innerHTML);
 
-                    let cellToCheck = document.querySelector(`#r${row}c${col}`);
-                    if (col == '0') {return;}
-                    if (row == '0') {return;}
+            if (coordinates.length > 4) { return };
+            let row = coordinates.slice(1, 2);
+            let col = coordinates.slice(3, 4);
 
-                    let valueToCheck = document.querySelector(`#r${row}c${col} span`).innerHTML;
-                    //console.log('valueToCheck: ' + valueToCheck);
+            let cellToCheck = document.querySelector(`#r${row}c${col}`);
+            if (col == '0') { return; }
+            if (row == '0') { return; }
 
-
-                    if (valueToCheck === '0') {
-                        console.log(coordinates + ' is a zero... Now what!?');
-                        // to make the function loop work here ???
-                        //uncoverAroundZero(coordinates);
-                        
-                    } 
-                    else if (valueToCheck === '1') {cellToCheck.className = 'cell value-1';} 
-                    else if (valueToCheck === '2') {cellToCheck.className = 'cell value-2';}
-                    else if (valueToCheck === '3') {cellToCheck.className = 'cell value-3';}
-                    else if (valueToCheck === '4') {cellToCheck.className = 'cell value-4';}
-                    else if (valueToCheck === '5') {cellToCheck.className = 'cell value-5';}
-                    else if (valueToCheck === '6') {cellToCheck.className = 'cell value-6';}
-                    else if (valueToCheck === '7') {cellToCheck.className = 'cell value-7';}
-                    else if (valueToCheck === '8') {cellToCheck.className = 'cell value-8';}
+            let valueToCheck = document.querySelector(`#r${row}c${col} span`).innerHTML;
+            //console.log('valueToCheck: ' + valueToCheck);
 
 
-                }
+            if (valueToCheck === '0') {
+                console.log(coordinates + ' is a zero... Now what!?');
+                // to make the function loop work here ???
+                //uncoverAroundZero(coordinates);
+
+            }
+            else if (valueToCheck === '1') { cellToCheck.className = 'cell value-1'; }
+            else if (valueToCheck === '2') { cellToCheck.className = 'cell value-2'; }
+            else if (valueToCheck === '3') { cellToCheck.className = 'cell value-3'; }
+            else if (valueToCheck === '4') { cellToCheck.className = 'cell value-4'; }
+            else if (valueToCheck === '5') { cellToCheck.className = 'cell value-5'; }
+            else if (valueToCheck === '6') { cellToCheck.className = 'cell value-6'; }
+            else if (valueToCheck === '7') { cellToCheck.className = 'cell value-7'; }
+            else if (valueToCheck === '8') { cellToCheck.className = 'cell value-8'; }
+
+
+        }
 
 
 
-            // ---  Change class to the numbered cells ---
+        // ---  Change class to the numbered cells ---
 
-        } else if (elementValue === '1') {
-            element.className = 'cell value-1';
-        } else if (elementValue === '2') {
-            element.className = 'cell value-2';
-        } else if (elementValue === '3') {
-            element.className = 'cell value-3';
-        } else if (elementValue === '4') {
-            element.className = 'cell value-4';
-        } else if (elementValue === '5') {
-            element.className = 'cell value-5';
-        } else if (elementValue === '6') {
-            element.className = 'cell value-6';
-        } else if (elementValue === '7') {
-            element.className = 'cell value-7';
-        } else if (elementValue === '8') {
-            element.className = 'cell value-8';
-        } 
+    } else if (elementValue === '1') {
+        element.className = 'cell value-1';
+    } else if (elementValue === '2') {
+        element.className = 'cell value-2';
+    } else if (elementValue === '3') {
+        element.className = 'cell value-3';
+    } else if (elementValue === '4') {
+        element.className = 'cell value-4';
+    } else if (elementValue === '5') {
+        element.className = 'cell value-5';
+    } else if (elementValue === '6') {
+        element.className = 'cell value-6';
+    } else if (elementValue === '7') {
+        element.className = 'cell value-7';
+    } else if (elementValue === '8') {
+        element.className = 'cell value-8';
+    }
+}
+// -------- Apply the corresponding class to left-clicked cells  ---------
 
-
-    })
-
-
+document.querySelectorAll('.cell').forEach((element) => {
+    element.addEventListener('click', checkCell)
 });
 
 
@@ -164,13 +157,13 @@ document.querySelectorAll('.cell').forEach((element) => {
 // -------- Right-click  ---------
 
 document.querySelectorAll('.cell').forEach((element) => {
-    
+
     element.addEventListener('contextmenu', e => {
         e.preventDefault();
     })
-    
+
     element.addEventListener('contextmenu', () => {
-        
+
         let currentClass = element.getAttribute('class');
         if (currentClass === 'cell covered') {
             currentClass = 'cell flagged';
@@ -225,14 +218,14 @@ function checkGameProgress(element) {
 
 let gameOver = [];
 gameOver.push("Bet you didn't see that coming 😜 ");
-gameOver.push("Better luck next time 🤷🏻‍♂️ "); 
+gameOver.push("Better luck next time 🤷🏻‍♂️ ");
 gameOver.push("Uhhh... you were so close! 🥺 ");
-gameOver.push("Hahaha... looser! 🤣 "); 
-gameOver.push("How does it feel? 💥 "); 
-gameOver.push("Surpriiiise! 💣 "); 
-gameOver.push("I hope you get better at this soon 🙄 "); 
-gameOver.push("Are you planning to win sometime? 🥱 "); 
-gameOver.push("You are fired from the bomb squad!!! 🚒 "); 
+gameOver.push("Hahaha... looser! 🤣 ");
+gameOver.push("How does it feel? 💥 ");
+gameOver.push("Surpriiiise! 💣 ");
+gameOver.push("I hope you get better at this soon 🙄 ");
+gameOver.push("Are you planning to win sometime? 🥱 ");
+gameOver.push("You are fired from the bomb squad!!! 🚒 ");
 gameOver.push("Ouch! 🙈");
 let randomNumGameOver = (Math.floor(Math.random() * gameOver.length));
 let gameOverPick = gameOver[randomNumGameOver];
@@ -434,7 +427,7 @@ let youWonPick = youWon[randomNumYouWon];
     //                     console.log(coordinates + ' is a zero... Now what!?');
     //                     // to make the function loop work here
     //                     //uncoverAroundZero(coordinates);
-                        
+
     //                 } 
     //                 else if (valueToCheck === '1') {cellToCheck.className = 'cell value-1';} 
     //                 else if (valueToCheck === '2') {cellToCheck.className = 'cell value-2';}
