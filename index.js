@@ -193,8 +193,8 @@ document.querySelectorAll('.cell').forEach((element) => {
         minesCount += 1;
     }
 })
-console.log('Total mines in board: ' + minesCount);
-console.log('Mines already flagged: ' + flaggedMinesCount);
+// console.log('Total mines in board: ' + minesCount);
+// console.log('Mines already flagged: ' + flaggedMinesCount);
 
 document.querySelectorAll('.cell').forEach((element) => {
     element.addEventListener('contextmenu', e => {
