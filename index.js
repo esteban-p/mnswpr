@@ -176,9 +176,14 @@ document.querySelectorAll('.cell').forEach((element) => {
 // -------- Right-click  ---------
 
 document.querySelectorAll('.cell').forEach((element) => {
+    
+    element.addEventListener('contextmenu', e => {
+        e.preventDefault();
+    })
+    
     element.addEventListener('contextmenu', () => {
+        
         let currentClass = element.getAttribute('class');
-        console.log(currentClass);
         if (currentClass === 'cell covered') {
             currentClass = 'cell flagged';
         } else if (currentClass === 'cell flagged') {
