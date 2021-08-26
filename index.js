@@ -73,18 +73,6 @@ document.querySelectorAll('.cell').forEach((element) => {
             } 
         }); 
         
-        let gameOver = [];
-        gameOver.push("Bet you didn't see that coming 😜 ");
-        gameOver.push("Better luck next time 🤷🏻‍♂️ "); 
-        gameOver.push("Uhhh... you were so close! 🥺 ");
-        gameOver.push("Hahaha... looser! 🤣 "); 
-        gameOver.push("How does it feel? 💥 "); 
-        gameOver.push("Surpriiiise! 💣 "); 
-        gameOver.push("I hope you get better at this soon 🙄 "); 
-        gameOver.push("Are you planning to win sometime? 🥱 "); 
-        gameOver.push("You are fired from the bomb squad!!! 🚒 "); 
-        let randomNum = (Math.floor(Math.random() * gameOver.length));
-        let gameOverPick = gameOver[randomNum];
         document.querySelector('#message').innerHTML = gameOverPick;
 
         // ---  To blank cells ---
@@ -194,6 +182,73 @@ document.querySelectorAll('.cell').forEach((element) => {
         element.className = currentClass;
     })
 })
+
+
+// -------- Count flagged mines  ---------
+
+let minesCount = 0
+let flaggedMinesCount = 0
+document.querySelectorAll('.cell').forEach((element) => {
+    if (element.querySelector('span').innerHTML === 'm') {
+        minesCount += 1;
+    }
+})
+console.log('Total mines in board: ' + minesCount);
+console.log('Mines already flagged: ' + flaggedMinesCount);
+
+document.querySelectorAll('.cell').forEach((element) => {
+    element.addEventListener('contextmenu', e => {
+        e.preventDefault();
+    })
+    element.addEventListener('contextmenu', () => {
+        checkGameProgress(element);
+    })
+})
+
+function checkGameProgress(element) {
+    let currentClass = element.getAttribute('class');
+    let cellValue = element.querySelector('span').innerHTML;
+    if (currentClass === 'cell flagged' && cellValue === 'm') {
+        flaggedMinesCount += 1;
+        console.log(flaggedMinesCount);
+    }
+    if (flaggedMinesCount === minesCount) {
+        document.querySelector('#message').innerHTML = youWonPick;
+    }
+}
+
+
+
+
+
+// -------- End messages  ---------
+
+let gameOver = [];
+gameOver.push("Bet you didn't see that coming 😜 ");
+gameOver.push("Better luck next time 🤷🏻‍♂️ "); 
+gameOver.push("Uhhh... you were so close! 🥺 ");
+gameOver.push("Hahaha... looser! 🤣 "); 
+gameOver.push("How does it feel? 💥 "); 
+gameOver.push("Surpriiiise! 💣 "); 
+gameOver.push("I hope you get better at this soon 🙄 "); 
+gameOver.push("Are you planning to win sometime? 🥱 "); 
+gameOver.push("You are fired from the bomb squad!!! 🚒 "); 
+let randomNumGameOver = (Math.floor(Math.random() * gameOver.length));
+let gameOverPick = gameOver[randomNumGameOver];
+
+let youWon = [];
+youWon.push("1");
+youWon.push("2");
+youWon.push("3");
+youWon.push("4");
+youWon.push("5");
+let randomNumYouWon = (Math.floor(Math.random() * youWon.length));
+let youWonPick = youWon[randomNumYouWon];
+
+
+
+
+
 
 
 
