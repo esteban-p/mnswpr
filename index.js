@@ -25,18 +25,32 @@ htmlToAdd += `
 //console.log(htmlToAdd);
 document.querySelector('#board-div').innerHTML = htmlToAdd;
 
-function checkCell(event) {
+const cellsWithZeros = [];
+
+const alreadyCheckedCells = [];
+
+function checkCell(el) {
     //console.log('Cell clicked: ', element);
-    const element = event.currentTarget;
+    // only if the parameter is a dom element we can use it directly  
+    // otherwise we have to use the target of the event
+    if (el === null) return;
+    let element;
+    if (el instanceof Element || element instanceof HTMLDocument) {
+        element = el;
+    } else {
+        element = el.currentTarget;
+    }
     console.log(element);
+
+    if (el === null) return;
     const elementValue = element.querySelector('span').innerHTML;
     //console.log(elementValue);
     const elementID = element.getAttribute('id');
     console.log('Clicked cell ID:' + elementID);
     const elementRow = elementID.slice(1, 2);
-    //console.log(elementRow);
+    console.log(elementRow);
     const elementCol = elementID.slice(3, 4);
-    //console.log(elementCol);
+    console.log(elementCol);
 
     const element_N_Id = 'r' + (+elementRow - 1) + 'c' + (+elementCol);
     const element_NE_Id = 'r' + (+elementRow - 1) + 'c' + (+elementCol + 1);
@@ -91,7 +105,6 @@ function checkCell(event) {
         // -------- Function called for each adjacent when the left-clicked cell is value zero  ---------
 
         function checkAdjCells(coordinates) {
-
             //console.log(document.querySelector('span').innerHTML);
 
             if (coordinates.length > 4) { return };
@@ -106,10 +119,12 @@ function checkCell(event) {
             //console.log('valueToCheck: ' + valueToCheck);
 
 
-            if (valueToCheck === '0') {
+            if (valueToCheck === '0' && !alreadyCheckedCells.includes(coordinates)) {
                 console.log(coordinates + ' is a zero... Now what!?');
+                cellsWithZeros.push(coordinates);
+                console.log(cellsWithZeros);
                 // to make the function loop work here ???
-                //uncoverAroundZero(coordinates);
+                // uncoverAroundZero(coordinates);
 
             }
             else if (valueToCheck === '1') { cellToCheck.className = 'cell value-1'; }
@@ -144,6 +159,12 @@ function checkCell(event) {
         element.className = 'cell value-7';
     } else if (elementValue === '8') {
         element.className = 'cell value-8';
+    }
+    while (cellsWithZeros.length !== 0) {
+        // console.log(document.querySelector(`#${cellsWithZeros.pop()}`))
+        const checkedCell = cellsWithZeros.pop();
+        alreadyCheckedCells.push(checkedCell);
+        checkCell(document.querySelector(`#${checkedCell}`));
     }
 }
 // -------- Apply the corresponding class to left-clicked cells  ---------
