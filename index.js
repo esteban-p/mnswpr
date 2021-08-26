@@ -161,7 +161,6 @@ function checkCell(el) {
         element.className = 'cell value-8';
     }
     while (cellsWithZeros.length !== 0) {
-        // console.log(document.querySelector(`#${cellsWithZeros.pop()}`))
         const checkedCell = cellsWithZeros.pop();
         alreadyCheckedCells.push(checkedCell);
         checkCell(document.querySelector(`#${checkedCell}`));
